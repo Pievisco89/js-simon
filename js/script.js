@@ -50,9 +50,10 @@ $(function(){
             numeroPresente = true;
             arrRisultato.push(numero);
           }
-
+          
         };
        
+        console.log(arrRisultato);
       }, 2000);//da sistemare prima di pushare e mettere 5000
     };
 
