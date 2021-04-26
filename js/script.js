@@ -1,5 +1,7 @@
 $(function(){
 
+  var livello = parseInt(prompt('Scegli livello: con quanti numeri vuoi giocare?'));
+
   var arrNumComputer;
   var arrNumUtente = [];
   var arrRisultato = [];
@@ -11,7 +13,7 @@ $(function(){
 
     $(this).hide();
     //uso la funzione creata per generare numeri random e pusharli nell'arrNumComputer
-    arrNumComputer = arrNumGenerator(5, 100);
+    arrNumComputer = arrNumGenerator(livello, 100);
     console.log(arrNumComputer);
     //stampo arrNumComputer
     printOutput(arrNumComputer, '#display');
@@ -38,29 +40,31 @@ $(function(){
       //dopo 3 secondi di controllo o stampo arrRisultato o stampo sconfitta utente
       setTimeout(function(){
 
-        var numeroPresente = false;
-
         for(var i = 0; i < arrNumUtente.length; i++){
 
           var numero = parseInt(arrNumUtente[i]);
 
           if(arrNumComputer.includes(numero)){
-
-            numeroPresente = true;
             arrRisultato.push(numero);
-            printOutput(arrRisultato, '#display');
-
-          }else if(!arrNumComputer.includes(numero)){
-            
-            printOutput('Hai perso, nessun numero indovinato!', '#display');
-
-          };
+          }
           
         };
+
+        //condizione numeri input non sono presenti nell'arrNumComputer
+        if(arrRisultato.length === 0){
+          printOutput('Hai perso, nessun numero indovinato!', '#display');
+        }else{ //stampo i numeri indovinati
+          printOutput(arrRisultato, '#display');
+        };
        
-        //ricompare bottone start con scritta ricomincia
+        //ricompare bottone start con scritta ricomincia 
         $('#start').text('Ricomincia').show();
-        
+        //click su ricomincia e ritorna la schermata iniziale
+        $('#start').click(function(){
+          reset();
+          $(this).text('VAI!').show();
+        });
+
       }, 3000);
 
     };
