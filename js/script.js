@@ -1,11 +1,6 @@
-//cliccando su via il computer genera 5 numeri random-->creare in html display e bottone
-//i numeri generati vengono mostrati per 5 secondi-->setTimeout dopo 5 secondi e dopo devono apparire input
-//dopo il quinto numero mostrare per 3 secondi "Calcolo in corso"
-//mostrare numeri indovinati, se non ce ne sono mostrare "Hai perso, nessun numero indovinato!"
-//opzionale: far apparire bottone start alla fine
-//opzionale: fare scegliere all'utente all'inizio con quanti numeri giocare
-
 $(function(){
+
+  var livello = parseInt(prompt('Livello: con quanti numeri vuoi giocare?'));
 
   var arrNumComputer;
   var arrNumUtente = [];
@@ -17,7 +12,7 @@ $(function(){
 
     $(this).hide();
 
-    arrNumComputer = arrNumGenerator(5, 100);
+    arrNumComputer = arrNumGenerator(livello, 100);
     console.log(arrNumComputer);
 
     printOutput(arrNumComputer, '#display');
@@ -76,7 +71,7 @@ $(function(){
 function reset(){
   printOutput('Concentrati e clicca su VAI!', display);
   $('#box').hide();
-;}
+};
 
 function printOutput(text, target){
   $(target).text(text);
