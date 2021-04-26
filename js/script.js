@@ -25,7 +25,7 @@ $(function(){
     setTimeout(function(){
       printOutput('Inserisci i numeri', '#display');
       $('#box').show();
-    }, 2000);//da sistemare prima di pushare e mettere 5000
+    }, 5000);
     
   });
 
@@ -44,17 +44,27 @@ $(function(){
         var numeroPresente = false;
 
         for(var i = 0; i < arrNumUtente.length; i++){
-          var numero = arrNumUtente[i];
+
+          var numero = parseInt(arrNumUtente[i]);
 
           if(arrNumComputer.includes(numero)){
+
             numeroPresente = true;
             arrRisultato.push(numero);
-          }
+            printOutput(arrRisultato, '#display');
+
+          }else if(!arrNumComputer.includes(numero)){
+            
+            printOutput('Hai perso, nessun numero indovinato!', '#display');
+
+          };
           
         };
        
-        console.log(arrRisultato);
-      }, 2000);//da sistemare prima di pushare e mettere 5000
+        $('#start').text('Ricomincia').show();
+        
+      }, 3000);
+
     };
 
   });
@@ -78,9 +88,7 @@ function arrNumGenerator(num, max){
   while(arrNum.length < num){
 
     var numRandom = getNumRandom(max);
-  
-    if(arrNum.includes(numRandom) === false){
-      
+    if(arrNum.includes(numRandom) === false){    
       arrNum.push(numRandom); 
     }
   }
